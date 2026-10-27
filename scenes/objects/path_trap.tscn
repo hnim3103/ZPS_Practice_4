@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://bxagbc5cilvmk"]
+
+[ext_resource type="PackedScene" uid="uid://c6wsq41xanmrg" path="res://scenes/objects/trap.tscn" id="1_j0fs5"]
+
+[sub_resource type="Curve3D" id="Curve3D_yiuey"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, -1.5, 0, 0, 0, 0, 0, 0, 0, 8, -4, 0),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Animation" id="Animation_yiuey"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_xshc4"]
+resource_name = "move"
+length = 5.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 4.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yiuey"]
+_data = {
+&"RESET": SubResource("Animation_yiuey"),
+&"move": SubResource("Animation_xshc4")
+}
+
+[node name="PathTrap" type="Node3D" unique_id=1484384834]
+
+[node name="Path3D" type="Path3D" parent="." unique_id=622617750]
+curve = SubResource("Curve3D_yiuey")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=754117008]
+rotation_mode = 0
+loop = false
+
+[node name="Trap" parent="Path3D/PathFollow3D" unique_id=151611543 instance=ExtResource("1_j0fs5")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=56289779]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_yiuey")
+autoplay = &"move"

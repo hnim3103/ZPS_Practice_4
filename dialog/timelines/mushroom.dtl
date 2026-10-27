@@ -1,0 +1,53 @@
+if GameManager.is_door_unlocked("gate"):
+    mushroom: Cáo quay lại à? Cửa sang đảo cua vẫn mở đó.
+    - Kể ta nghe thêm về đàn cua
+        mushroom: Cua đỏ đi ngang, cua xanh đi dọc. Đừng để chúng kẹp cả hai bên nhé!
+    - Ta đi đây
+        mushroom: Đi cẩn thận nhé, Cáo!
+    [end_timeline]
+mushroom: Ồ, một vị khách! Lâu lắm rồi mới có người leo lên tới bục cao này.
+foxy: Chào bác. Bác là ai vậy?
+mushroom: Ta là Nấm, người giữ cánh cửa sang đảo bên kia.
+label Menu
+mushroom: Cáo muốn hỏi gì nào?
+- Bên kia cửa có gì?
+    mushroom: Một hòn đảo đầy cua dữ. Chúng canh một kho báu từ thời ông cố của ta.
+    foxy: Kho báu? Nghe hấp dẫn đấy!
+    mushroom: Hấp dẫn, nhưng nguy hiểm. Nhiều kẻ đi mà không thấy về.
+    jump Menu
+- Sao bác lại giữ cửa?
+    mushroom: Vì không phải ai cũng đủ khôn ngoan để qua đảo.
+    mushroom: Ta chỉ mở cửa cho kẻ trả lời được câu đố của ta.
+    jump Menu
+- Mở cửa cho ta đi!
+    mushroom: Muốn qua thì phải trả lời đúng hai câu đố. Sẵn sàng chưa?
+    - Sẵn sàng!
+        set {PlayerScore} = 0
+        mushroom: Câu một: Cái gì càng lấy đi càng to ra?
+        - Cái hố
+            set {PlayerScore} += 1
+            mushroom: Chính xác!
+        - Cái bánh
+            mushroom: Bánh ăn thì nhỏ đi chứ, Cáo!
+        mushroom: Câu hai: Con cua đi theo hướng nào?
+        - Đi ngang
+            set {PlayerScore} += 1
+            mushroom: Đúng rồi, cua chẳng bao giờ đi thẳng.
+        - Đi thẳng
+            mushroom: Cáo chưa gặp con cua nào bao giờ à?
+        if {PlayerScore} >= 2:
+            mushroom: Hai câu đúng cả hai! Cáo khôn ngoan lắm.
+            do GameManager.unlock_door("gate")
+            mushroom: Cửa mở rồi đó. Chúc Cáo tìm được kho báu!
+            foxy: Cảm ơn bác Nấm!
+        elif {PlayerScore} == 1:
+            mushroom: Đúng một câu thôi. Gần được rồi, thử lại nhé!
+            jump Menu
+        else:
+            mushroom: Không đúng câu nào... Cáo về suy nghĩ thêm đi.
+    - Để ta nghĩ đã
+        mushroom: Cứ từ từ. Câu đố không chạy mất đâu.
+        jump Menu
+- Tạm biệt
+    foxy: Ta đi dạo quanh làng một chút đã.
+    mushroom: Khi nào sẵn sàng thì quay lại tìm ta nhé.

@@ -22,7 +22,12 @@ var detect_player_area: Area3D
 var found_player: Node3D = null
 
 
+## Every enemy joins this group, so a door can tell when a stage is cleared.
+const GROUP := "enemies"
+
+
 func _ready() -> void:
+	add_to_group(GROUP)
 	_init_ray_cast()
 	_init_detect_player_area()
 	_init_hurt_area()

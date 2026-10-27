@@ -20,6 +20,13 @@ ambient_light_color = Color(0.95596343, 0.9559633, 0.95596343, 1)
 ambient_light_sky_contribution = 0.8
 ambient_light_energy = 0.56
 
+[sub_resource type="Curve3D" id="Curve3D_s2c0g"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 1.8245115, 2.3744745, -0.8932724, -1.8245115, -2.3744745, 0.8932724, 4, -1.5, 0, 0, 0, 0, 0, 0, 0, 8, -4, 0),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
 [node name="Stage" type="Node3D" unique_id=308842545]
 script = ExtResource("1_p5sae")
 
@@ -75,9 +82,20 @@ floor_map = NodePath("../World")
 
 [node name="MovingPlatform" parent="." unique_id=243499958 instance=ExtResource("10_mg8ag")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.8, 8)
+acceleration = 1.0
 
 [node name="PathPlatform" parent="." unique_id=1484384834 instance=ExtResource("11_w0g6r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 4.75, 8)
+
+[node name="PathPlatform2" parent="." unique_id=750701341 instance=ExtResource("11_w0g6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.049014, 1.25, 16.264698)
+
+[node name="Path3D" parent="PathPlatform2" index="0" unique_id=622617750]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.819968, 1.8940983, 1.1933632)
+curve = SubResource("Curve3D_s2c0g")
+
+[node name="Platform" parent="PathPlatform2" index="1" unique_id=1706886364]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.819968, 1.8940983, 1.1933632)
 
 [node name="Door" parent="." unique_id=571053492 instance=ExtResource("12_h8r88")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 0.5)
@@ -88,3 +106,11 @@ target_door = "to_stage_2"
 [node name="Checkpoint" parent="." unique_id=968703136 instance=ExtResource("13_s2c0g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 15)
 id = "dock"
+
+[node name="DoorToStage3" parent="." instance=ExtResource("12_h8r88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 1, 0.5)
+id = "to_stage_3"
+target_stage = "res://levels/level_1/stage_3.tscn"
+target_door = "to_stage_2"
+
+[editable path="PathPlatform2"]

@@ -61,6 +61,8 @@ func change_stage(stage_path: String, spawn_name: String = "", keep_health: bool
 	_changing = true
 	pending_spawn = spawn_name
 	player_health = health
+	# After _changing is set, so a second press during the fade is still refused.
+	await Transition.fade_out()
 	# Deferred: this usually runs inside a signal fired mid physics step (an Area3D, an animation);
 	# swapping the scene right there would free nodes the engine is still walking.
 	get_tree().change_scene_to_file.call_deferred(stage_path)
@@ -101,6 +103,7 @@ func register_stage(stage: Stage) -> void:
 		stage.place_player_at(pending_spawn)
 		pending_spawn = ""
 	stage_changed.emit(stage)
+	Transition.fade_in()    # not awaited: the stage plays while the screen lights up
 
 
 ## A scene that isn't a Stage (the test yard, a menu) never calls register_stage(), so nothing else

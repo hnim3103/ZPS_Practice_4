@@ -67,4 +67,7 @@ func steer_along_path() -> void:
 ## F next to the mushroom: talk. For now only a line in the Output panel; part 7 starts a dialogue
 ## here instead.
 func _on_talk_area_interacted() -> void:
-	print("On talk area interacted!")
+	for body: Node3D in talk_area.get_overlapping_bodies():
+		if body is Player:
+			Conversation.play("mushroom", body, self)
+			return

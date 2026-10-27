@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" path="res://scenes/enemies/crab/crab.tscn" id="7_jrwcf"]
 [ext_resource type="PackedScene" path="res://scenes/enemies/starfish/starfish.tscn" id="8_lxmcf"]
 [ext_resource type="PackedScene" path="res://scenes/enemies/barrel/barrel.tscn" id="9_5ubvi"]
-[ext_resource type="PackedScene" path="res://scenes/objects/trap.tscn" id="10_rpm3b"]
+[ext_resource type="PackedScene" uid="uid://c6wsq41xanmrg" path="res://scenes/objects/trap.tscn" id="10_rpm3b"]
 [ext_resource type="PackedScene" uid="uid://clxulon4q7jr" path="res://scenes/player/player.tscn" id="11_h1rxi"]
 [ext_resource type="PackedScene" path="res://scenes/camera/camera_rig.tscn" id="12_p5tfg"]
 [ext_resource type="PackedScene" uid="uid://65gpamtlsq5j" path="res://scenes/objects/sea_water.tscn" id="13_nm8l7"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://ddrqk72ngkeg7" path="res://scripts/grid_pathfinder.gd" id="16_lcwqb"]
 [ext_resource type="PackedScene" uid="uid://nqnelqjpbqm7" path="res://levels/objects/door/door.tscn" id="17_md6n3"]
 [ext_resource type="PackedScene" uid="uid://crb65yxteq68h" path="res://levels/objects/checkpoint/checkpoint.tscn" id="18_d7x21"]
+[ext_resource type="PackedScene" uid="uid://bxagbc5cilvmk" path="res://scenes/objects/path_trap.tscn" id="19_h51gi"]
 
 [sub_resource type="Environment" id="Environment_1fr5c"]
 ambient_light_source = 3
@@ -137,3 +138,6 @@ unlock_flag = "gate"
 [node name="Checkpoint" parent="." unique_id=968703136 instance=ExtResource("18_d7x21")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 1, 27)
 id = "village"
+
+[node name="PathTrap" parent="." unique_id=1484384834 instance=ExtResource("19_h51gi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.49937, 1.4279041, 12.206683)
